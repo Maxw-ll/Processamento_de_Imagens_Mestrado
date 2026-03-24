@@ -318,7 +318,7 @@ void save_img(Imagem* img, char* name)
 int main(int argc, char const *argv[])
 {
 
-    /*
+    
     //PIPELINE COM IMAGEM GERADA ALEATORIA
     srand(time(NULL));
 
@@ -346,8 +346,8 @@ int main(int argc, char const *argv[])
     //show_image(new_no_uniform_image);
     save_img(new_no_uniform_image, "Imagem_nao_uniforme.png");
     
-    */
-   
+    
+
     printf("Leitura de Imagem Iniciada\n");
     Imagem* img_jinx = read_img("jinx_omg/JinxGrayScale.png");
     
