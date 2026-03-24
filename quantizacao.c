@@ -211,7 +211,7 @@ Imagem* make_equality_frequence_distribution_quantization(Imagem* img, int n_bit
         count_values += histogram[i];
         sum_values += histogram[i] * i;
         
-        if(count_values >= img->qtd_valores/n_faixas)
+        if(count_values >= (img->altura * img->largura )/n_faixas)
         {
             new_values[counter_for_values] = sum_values/count_values;
             limit_values[counter_for_values] = i;
@@ -332,28 +332,29 @@ int main(int argc, char const *argv[])
     
     fill_matriz_with_random(my_image);
     //show_image(my_image);
-    save_img(my_image, "Imagem_normal.png");
+    save_img(my_image, "img_random/Imagem_normal.png");
 
     
     Imagem* new_uniform_image = make_uniform_quantization(my_image, 1);
     printf("\n Quantizacao Uniforme\n");
     //show_image(new_uniform_image);
-    save_img(new_uniform_image, "Imagem_uniforme.png");
+    save_img(new_uniform_image, "img_random/Imagem_uniforme.png");
 
     
     Imagem* new_no_uniform_image = make_equality_frequence_distribution_quantization(my_image, 1);
     printf("\n Quantizacao Nao Uniforme\n");
     //show_image(new_no_uniform_image);
-    save_img(new_no_uniform_image, "Imagem_nao_uniforme.png");
+    save_img(new_no_uniform_image, "img_random/Imagem_nao_uniforme.png");
     
     
-
     printf("Leitura de Imagem Iniciada\n");
     Imagem* img_jinx = read_img("jinx_omg/JinxGrayScale.png");
     
     printf("Quantizacaoo Iniciada\n");
-    Imagem* img_jinx_uniform_quant = make_uniform_quantization(img_jinx, 1);
-    save_img(img_jinx_uniform_quant, "jinx_omg/JinxAll_Quant_Uniform_1bits.png");
+    Imagem* img_jinx_uniform_quant = make_uniform_quantization(img_jinx, 2);
+    save_img(img_jinx_uniform_quant, "jinx_omg/JinxAll_Quant_Uniform_2bits.png");
+    Imagem* img_jinx_no_uniform_quant = make_equality_frequence_distribution_quantization(img_jinx, 1);
+    save_img(img_jinx_no_uniform_quant, "jinx_omg/JinxAll_Quant_NoUniform_1bits.png");
 
 }
 
