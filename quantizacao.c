@@ -40,7 +40,12 @@ typedef struct
     int qtd_valores; //Quantidade de valores
 } Imagem;
 
-
+typedef struct
+{
+    int* histogram;
+    int* acumuleted_histogram;
+    int tam;
+} Histograma;
 
 //Cria a imagem
 Imagem* create_image_gray_scale(int altura, int largura, int n_bits)
@@ -159,30 +164,50 @@ Imagem* make_uniform_quantization(Imagem* img, int n_bits)
 
 
 //Fazer o Histograma
-int* make_histogram(Imagem* img)
+Histograma* make_histogram(Imagem* img)
 {
-    int* histogram = (int*)malloc(sizeof(int)*img->qtd_valores);
-    
-    if(histogram == NULL)
-    {
-        return NULL;
-    }
-    
+    Histograma* hst = (Histograma*)malloc(sizeof(Histograma));
+
+    hst->histogram = (int*)malloc(sizeof(int)*img->qtd_valores);
+    hst->acumuleted_histogram = (int*)malloc(sizeof(int)*img->qtd_valores);
+    hst->tam = img->qtd_valores;
+
+    //Zerar valores dos histogramas
     for(int i=0; i < img->qtd_valores; i++)
     {
-        histogram[i] = 0;
+        hst->histogram[i] = 0;
+        hst->acumuleted_histogram[i] = 0;
     }
     
+    //Preenche-los da forma correta
     for(int i=0; i < img->altura; i++)
     {
         for(int j=0; j < img->largura; j++)
         {
             int value = img->matriz[i][j];
-            histogram[value] += 1;
+            hst->histogram[value] += 1;
         }
     }
+
+    int sum_hist = 0;
+
+    for(int i=0; i < hst->tam; i++)
+    {   
+        sum_hist += hst->histogram[i];
+        hst->acumuleted_histogram[i] = sum_hist;
+    }
     
-    return histogram;
+    return hst;
+}
+
+void imprime_vetor(int* vector, int tam)
+{   
+    printf("\n");
+    for(int i=0; i < tam; i++)
+    {
+        printf(" %d", vector[i]);
+    }
+    printf("\n");
 }
 
 
@@ -191,7 +216,9 @@ Imagem* make_equality_frequence_distribution_quantization(Imagem* img, int n_bit
 {   
     Imagem* new_image = create_image_gray_scale(img->altura, img->largura, n_bits);
     
-    int* histogram = make_histogram(img);
+    Histograma* hst = make_histogram(img);
+
+    int* histogram = hst->histogram;
     
     if(new_image == NULL || histogram == NULL)
     {
@@ -200,11 +227,12 @@ Imagem* make_equality_frequence_distribution_quantization(Imagem* img, int n_bit
 
     int n_faixas = (int)pow(2, n_bits);
     int new_values[n_faixas];
-    int limit_values[n_faixas];
+    int limit_values[n_faixas-1];
     
     int count_values = 0;
     int sum_values = 0;
     int counter_for_values = 0;
+    
     for(int i=0; i < img->qtd_valores; i++)
     {
         
@@ -219,8 +247,17 @@ Imagem* make_equality_frequence_distribution_quantization(Imagem* img, int n_bit
             sum_values = 0;
             counter_for_values += 1; 
         }
+
+        if(counter_for_values == n_faixas - 1 && i == img->qtd_valores-1)
+        {
+            limit_values[counter_for_values] = img->qtd_valores;
+            new_values[counter_for_values] = sum_values/count_values;
+        }
         
     }
+
+    imprime_vetor(limit_values, n_faixas);
+    imprime_vetor(new_values, n_faixas);
 
     for(int i=0; i < img->altura; i++)
     {
@@ -311,6 +348,16 @@ void save_img(Imagem* img, char* name)
 }
 
 
+void save_histogram(int *histogram, char* path_to_save)
+{
+    int maior_frequencia = 0;
+
+    for(int i=0; i<9; i++)
+    {
+
+    }
+
+}
 
 
 
@@ -318,12 +365,12 @@ void save_img(Imagem* img, char* name)
 int main(int argc, char const *argv[])
 {
 
-    
+    /*
     //PIPELINE COM IMAGEM GERADA ALEATORIA
     srand(time(NULL));
-
+    
     Imagem* my_image = create_image_gray_scale(16, 16, 8);
-
+    
     if(my_image == NULL)
     {
         printf("Imagem nao criada!");
@@ -333,19 +380,19 @@ int main(int argc, char const *argv[])
     fill_matriz_with_random(my_image);
     //show_image(my_image);
     save_img(my_image, "img_random/Imagem_normal.png");
-
+    
     
     Imagem* new_uniform_image = make_uniform_quantization(my_image, 1);
     printf("\n Quantizacao Uniforme\n");
     //show_image(new_uniform_image);
     save_img(new_uniform_image, "img_random/Imagem_uniforme.png");
-
+    
     
     Imagem* new_no_uniform_image = make_equality_frequence_distribution_quantization(my_image, 1);
     printf("\n Quantizacao Nao Uniforme\n");
     //show_image(new_no_uniform_image);
     save_img(new_no_uniform_image, "img_random/Imagem_nao_uniforme.png");
-    
+    */
     
     printf("Leitura de Imagem Iniciada\n");
     Imagem* img_jinx = read_img("jinx_omg/JinxGrayScale.png");

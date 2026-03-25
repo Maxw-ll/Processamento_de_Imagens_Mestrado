@@ -11,10 +11,10 @@ stb_image_write.h = "https://github.com/nothings/stb/blob/master/stb_image_write
 
 # Imagens de Quantização
 
-Abaixo estão as imagens que representam a quantização da imagem com o algoritmo de quantização uniforme:
+Abaixo estão as imagens que representam a quantização da imagem com o algoritmo de quantização com divisão uniforme:
 
 <table>
-  <caption>Quantização Uniforme</caption>
+  <caption>Quantização Divisão Uniforme</caption>
   <tr>
     <td><img src="jinx_omg\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
     <td><img src="jinx_omg\JinxAll_Quant_Uniform_4bits.png" width="200"><br><figcaption>Quantização 4 bits</figcaption></td>
@@ -22,5 +22,19 @@ Abaixo estão as imagens que representam a quantização da imagem com o algorit
   <tr>
     <td><img src="jinx_omg\JinxAll_Quant_Uniform_2bits.png" width="200"><br><figcaption>Quantização 2 bits</figcaption></td>
     <td><img src="jinx_omg\JinxAll_Quant_Uniform_1bits.png" width="200"><br><figcaption>Quantização 1 bit</figcaption></td>
+  </tr>
+</table>
+
+Abaixo estão as imagens que representam a quantização da imagem usando o algoritmo de quantização não uniforme:
+
+<table>
+  <caption>Quantização Divisão Não Uniforme</caption>
+  <tr>
+    <td><img src="jinx_omg\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
+    <td><img src="jinx_omg\JinxAll_Quant_NoUniform_4bits.png" width="200"><br><figcaption>Quantização 4 bits</figcaption></td>
+  </tr>
+  <tr>
+    <td><img src="jinx_omg\JinxAll_Quant_NoUniform_2bits.png" width="200"><br><figcaption>Quantização 2 bits</figcaption></td>
+    <td><img src="jinx_omg\JinxAll_Quant_NoUniform_1bits.png" width="200"><br><figcaption>Quantização 1 bit</figcaption></td>
   </tr>
 </table>
