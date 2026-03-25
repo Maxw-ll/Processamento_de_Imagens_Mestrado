@@ -8,3 +8,19 @@ stb_image.h = "https://github.com/nothings/stb/blob/master/stb_image.h"
 
 
 stb_image_write.h = "https://github.com/nothings/stb/blob/master/stb_image_write.h"
+
+# Imagens de Quantização
+
+Abaixo estão as imagens que representam a quantização da imagem com o algoritmo de quantização uniforme:
+
+<table>
+  <caption>Quantização Uniforme</caption>
+  <tr>
+    <td><img src="jinx_omg\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
+    <td><img src="jinx_omg\JinxAll_Quant_Uniform_4bits.png" width="200"><br><figcaption>Quantização 4 bits</figcaption></td>
+  </tr>
+  <tr>
+    <td><img src="jinx_omg\JinxAll_Quant_Uniform_2bits.png" width="200"><br><figcaption>Quantização 2 bits</figcaption></td>
+    <td><img src="jinx_omg\JinxAll_Quant_Uniform_1bits.png" width="200"><br><figcaption>Quantização 1 bit</figcaption></td>
+  </tr>
+</table>
