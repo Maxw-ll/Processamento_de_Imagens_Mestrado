@@ -210,6 +210,71 @@ void imprime_vetor(int* vector, int tam)
     printf("\n");
 }
 
+//Transforma a matriz da imagem em um vetor para depois ser salva
+unsigned char* create_img_data_vector(Imagem* img)
+{
+    unsigned char* img_vector = (unsigned char*)malloc(sizeof(unsigned char) * img->altura * img->largura);
+
+    if(img_vector == NULL)
+    {
+        return NULL;
+    }
+
+    int idx_vector = 0;
+
+    for(int i=0; i < img->altura; i++)
+    {
+        for(int j=0; j < img->largura; j++)
+        {
+            img_vector[idx_vector] = (unsigned char)img->matriz[i][j];
+            idx_vector++;
+        }
+    }
+
+    return img_vector;
+
+}
+
+//Salvar a imagem
+void save_img(Imagem* img, char* name)
+{
+    unsigned char* img_data = create_img_data_vector(img);
+    stbi_write_png(name, img->largura, img->altura, 1, img_data, img->largura);
+}
+
+
+void save_histogram(Histograma* hst, char* path_to_save)
+{
+    int maior_frequencia = 0;
+
+    for(int i=0; i < hst->tam; i++)
+    {
+        if(hst->histogram[i] > maior_frequencia)
+        {
+            maior_frequencia = hst->histogram[i];
+        }
+    }
+    
+    Imagem* img_histogram = create_image_gray_scale(maior_frequencia, hst->tam, 8);
+
+    for(int j=0; j < hst->tam; j++)
+    {   
+        for(int i = 0; i < maior_frequencia; i++)
+        {   
+            img_histogram->matriz[i][j] = hst->tam-1;
+            if(maior_frequencia - i <= hst->histogram[j])
+            {
+                img_histogram->matriz[i][j] = 0;
+            }
+            
+        }
+    }
+    save_img(img_histogram, path_to_save);
+}
+    
+
+
+
 
 //Quantização que leva em conta a distribuição do histograma e procura equilibrar a quantidade de valores em cada faixa
 Imagem* make_equality_frequence_distribution_quantization(Imagem* img, int n_bits)
@@ -219,6 +284,8 @@ Imagem* make_equality_frequence_distribution_quantization(Imagem* img, int n_bit
     Histograma* hst = make_histogram(img);
 
     int* histogram = hst->histogram;
+
+    save_histogram(hst, "Histograma.png");
     
     if(new_image == NULL || histogram == NULL)
     {
@@ -315,49 +382,10 @@ Imagem* read_img(char* path_img)
     return new_image;
 }
 
-//Transforma a matriz da imagem em um vetor para depois ser salva
-unsigned char* create_img_data_vector(Imagem* img)
-{
-    unsigned char* img_vector = (unsigned char*)malloc(sizeof(unsigned char) * img->altura * img->largura);
-
-    if(img_vector == NULL)
-    {
-        return NULL;
-    }
-
-    int idx_vector = 0;
-
-    for(int i=0; i < img->altura; i++)
-    {
-        for(int j=0; j < img->largura; j++)
-        {
-            img_vector[idx_vector] = (unsigned char)img->matriz[i][j];
-            idx_vector++;
-        }
-    }
-
-    return img_vector;
-
-}
-
-//Salvar a imagem
-void save_img(Imagem* img, char* name)
-{
-    unsigned char* img_data = create_img_data_vector(img);
-    stbi_write_png(name, img->largura, img->altura, 1, img_data, img->largura);
-}
 
 
-void save_histogram(int *histogram, char* path_to_save)
-{
-    int maior_frequencia = 0;
 
-    for(int i=0; i<9; i++)
-    {
 
-    }
-
-}
 
 
 
@@ -395,13 +423,13 @@ int main(int argc, char const *argv[])
     */
     
     printf("Leitura de Imagem Iniciada\n");
-    Imagem* img_jinx = read_img("jinx_omg/JinxGrayScale.png");
+    Imagem* img_jinx = read_img("jinx_omg\\Eye\\Eye.png");
     
     printf("Quantizacaoo Iniciada\n");
-    Imagem* img_jinx_uniform_quant = make_uniform_quantization(img_jinx, 2);
-    save_img(img_jinx_uniform_quant, "jinx_omg/JinxAll_Quant_Uniform_2bits.png");
-    Imagem* img_jinx_no_uniform_quant = make_equality_frequence_distribution_quantization(img_jinx, 1);
-    save_img(img_jinx_no_uniform_quant, "jinx_omg/JinxAll_Quant_NoUniform_1bits.png");
+    //Imagem* img_jinx_uniform_quant = make_uniform_quantization(img_jinx, 2);
+    //save_img(img_jinx_uniform_quant, "jinx_omg/JinxAll_Quant_Uniform_2bits.png");
+    Imagem* img_jinx_no_uniform_quant = make_equality_frequence_distribution_quantization(img_jinx, 4);
+    //save_img(img_jinx_no_uniform_quant, "jinx_omg/JinxAll_Quant_NoUniform_4bits.png");
 
 }
 
