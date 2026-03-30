@@ -16,12 +16,12 @@ Abaixo estão as imagens que representam a quantização da imagem com o algorit
 <table>
   <caption>Quantização Divisão Uniforme</caption>
   <tr>
-    <td><img src="jinx_omg\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
-    <td><img src="jinx_omg\JinxAll_Quant_Uniform_4bits.png" width="200"><br><figcaption>Quantização 4 bits</figcaption></td>
+    <td><img src="zimg\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
+    <td><img src="zimg\JinxAll_Quant_Uniform_4bits.png" width="200"><br><figcaption>Quantização 4 bits</figcaption></td>
   </tr>
   <tr>
-    <td><img src="jinx_omg\JinxAll_Quant_Uniform_2bits.png" width="200"><br><figcaption>Quantização 2 bits</figcaption></td>
-    <td><img src="jinx_omg\JinxAll_Quant_Uniform_1bits.png" width="200"><br><figcaption>Quantização 1 bit</figcaption></td>
+    <td><img src="zimg\JinxAll_Quant_Uniform_2bits.png" width="200"><br><figcaption>Quantização 2 bits</figcaption></td>
+    <td><img src="zimg\JinxAll_Quant_Uniform_1bits.png" width="200"><br><figcaption>Quantização 1 bit</figcaption></td>
   </tr>
 </table>
 
@@ -30,11 +30,11 @@ Abaixo estão as imagens que representam a quantização da imagem usando o algo
 <table>
   <caption>Quantização Divisão Não Uniforme</caption>
   <tr>
-    <td><img src="jinx_omg\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
-    <td><img src="jinx_omg\JinxAll_Quant_NoUniform_4bits.png" width="200"><br><figcaption>Quantização 4 bits</figcaption></td>
+    <td><img src="zimg\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
+    <td><img src="zimg\JinxAll_Quant_NoUniform_4bits.png" width="200"><br><figcaption>Quantização 4 bits</figcaption></td>
   </tr>
   <tr>
-    <td><img src="jinx_omg\JinxAll_Quant_NoUniform_2bits.png" width="200"><br><figcaption>Quantização 2 bits</figcaption></td>
-    <td><img src="jinx_omg\JinxAll_Quant_NoUniform_1bits.png" width="200"><br><figcaption>Quantização 1 bit</figcaption></td>
+    <td><img src="zimg\JinxAll_Quant_NoUniform_2bits.png" width="200"><br><figcaption>Quantização 2 bits</figcaption></td>
+    <td><img src="zimg\JinxAll_Quant_NoUniform_1bits.png" width="200"><br><figcaption>Quantização 1 bit</figcaption></td>
   </tr>
 </table>
