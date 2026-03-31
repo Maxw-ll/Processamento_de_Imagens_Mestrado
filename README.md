@@ -80,7 +80,7 @@ Abaixo estão as imagens que representam algumas operações aritméticas:
 </table>
 
 <table>
-  <caption>Divisão</caption>
+  <caption>Multiplicação</caption>
   <tr>
     <td><img src="zimg\Jinx\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
     <td><img src="zimg\Jinx\Mascara.png" width="200"><br><figcaption>Máscara para Multiplicação</figcaption></td>
