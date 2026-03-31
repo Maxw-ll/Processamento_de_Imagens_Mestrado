@@ -4,6 +4,7 @@
 Aluno: MAXWELL PIRES SILVA
 Professor: ARISTOFANES CORREA SILVA
 Disciplina: PROCESSAMENTO DE IMAGEM E VISÃO COMPUTACIONAL 
+24/03/2026
 
 ########################################################
 */

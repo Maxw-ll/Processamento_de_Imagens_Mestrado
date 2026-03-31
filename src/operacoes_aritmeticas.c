@@ -1,6 +1,17 @@
 #include "image.h"
 #include <stdio.h>
 
+/*
+#######################################################
+
+Aluno: MAXWELL PIRES SILVA
+Professor: ARISTOFANES CORREA SILVA
+Disciplina: PROCESSAMENTO DE IMAGEM E VISÃO COMPUTACIONAL 
+31/03/2026
+
+########################################################
+*/
+
 Imagem* sum_image_with_image(Imagem* imgA, Imagem* imgB, int sub)
 {   
     Imagem* img_result = NULL;
