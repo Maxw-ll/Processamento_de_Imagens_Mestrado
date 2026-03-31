@@ -56,13 +56,20 @@ void show_image(Imagem *img)
     }
 }
 
-void fill_matriz_with_random(Imagem* img)
+void fill_matriz_with_number(Imagem* img, int number, int random)
 {
     for (int i = 0; i < img->altura; i++)
     {
         for (int j = 0; j < img->largura; j++)
-        {
-            img->matriz[i][j] = rand() % img->qtd_valores;
+        {   
+            if(random == TRUE)
+            {
+                img->matriz[i][j] = rand() % img->qtd_valores;
+            }
+            else
+            {
+                img->matriz[i][j] = number;
+            }
         }
     }
 }

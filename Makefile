@@ -4,7 +4,7 @@ OUT = main.exe
 
 SRC = src/main.c \
 	src/image.c \
-	src/quantizacao.c \
+	src/operacoes_aritmeticas.c \
 	src/io.c \
 	src/histograma.c
 
