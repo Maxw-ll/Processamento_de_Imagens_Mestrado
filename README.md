@@ -1,14 +1,3 @@
-Os scripts stb_image.h e stb_image_write.h são usados para carregar e salvar a imagem, respectivamente.
-
-
-Podem ser encontrados nos repositórios:
-
-
-stb_image.h = "https://github.com/nothings/stb/blob/master/stb_image.h"
-
-
-stb_image_write.h = "https://github.com/nothings/stb/blob/master/stb_image_write.h"
-
 # Imagens Quantização
 
 Abaixo estão as imagens que representam a quantização da imagem com o algoritmo de quantização com divisão uniforme:
@@ -92,5 +81,42 @@ Abaixo estão as imagens que representam algumas operações aritméticas:
 </table>
 
 
+# Imagens de Melhoramento
 
+Abaixo estão as imagens que representam os resultados das 4 operações de melhoramento (Mapeamento Linear, Equalização e Stretching) aplicadas sobre 3 imagens diferentes. Cada tabela compara a imagem original com os resultados de melhoramento.
 
+### Imagem 1
+
+<table>
+  <caption>Melhoramentos para Jinx Baixo Contraste</caption>
+  <tr>
+    <td><img src="zimg\Jinx\JinxGrayLowContrast.png" width="200"><br><figcaption>Original</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_MapeamentoLinearLOWC.png" width="200"><br><figcaption>Mapeamento Linear</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_EqualizacaoLOWC.png" width="200"><br><figcaption>Equalização</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_StretchingLOWC.png" width="200"><br><figcaption>Stretching</figcaption></td>
+  </tr>
+</table>
+
+### Imagem 2
+
+<table>
+  <caption>Melhoramentos para Jinx com Histograma com valores mais abaixos</caption>
+  <tr>
+    <td><img src="zimg\Jinx\JinxGrayLowValues.png" width="200"><br><figcaption>Original</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_MapeamentoLinearLOWV.png" width="200"><br><figcaption>Mapeamento Linear</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_EqualizacaoLOWV.png" width="200"><br><figcaption>Equalização</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_StretchingLOWV.png" width="200"><br><figcaption>Stretching</figcaption></td>
+  </tr>
+</table>
+
+### Imagem 3
+
+<table>
+  <caption>Melhoramentos para Jinx Normal</caption>
+  <tr>
+    <td><img src="zimg\Jinx\JinxGrayScale.png" width="200"><br><figcaption>Original</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_MapeamentoLinear.png" width="200"><br><figcaption>Mapeamento Linear</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_Equalizacao.png" width="200"><br><figcaption>Equalização</figcaption></td>
+    <td><img src="zimg\Jinx\Melhoramento\Jinx_Stretching.png" width="200"><br><figcaption>Stretching</figcaption></td>
+  </tr>
+</table>

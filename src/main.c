@@ -1,6 +1,7 @@
 #include "image.h"
 #include "io.h"
 #include "operacoes_aritmeticas.h"
+#include "algoritmos_melhoramento.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,26 +12,63 @@
 int main(int argc, char const *argv[])
 {
 
-    /*
-    
-    printf("Quantizacaoo Iniciada\n");
-    Imagem* img_jinx_uniform_quant = make_uniform_quantization(img_jinx, 2);
-    save_img(img_jinx_uniform_quant, "jinx_omg/JinxAll_Quant_Uniform_2bits.png");
-    Imagem* img_jinx_no_uniform_quant = make_equality_frequence_distribution_quantization(img_jinx, 4);
-    save_img(img_jinx_no_uniform_quant, "jinx_omg/JinxAll_Quant_NoUniform_4bits.png");
-    */
-   
     printf("Leitura de Imagem Iniciada\n");
-    Imagem* img_jinx = read_img("zimg/Jinx/JinxGrayScale.png");
-
-
-    Imagem* mask = read_img("zimg/Jinx/Mascara.png");
-    Imagem* result;
-
-
-    result = multiply_image_with_image(img_jinx, mask);
-    save_img(result, "JinxAll_MultMask.png");
     
+    // Carregar as imagens
+    Imagem* img_jinx = read_img("zimg/Jinx/JinxGrayScale.png");
+    Imagem* img_jinx_lowc = read_img("zimg/Jinx/JinxGrayLowContrast.png");
+    Imagem* img_jinx_lowv = read_img("zimg/Jinx/JinxGrayLowValues.png");
+    Imagem* mask = read_img("zimg/Jinx/Mascara.png");
+
+    // Criar histograma da imagem
+    Histograma* hst = make_histogram(img_jinx);
+
+    // Aplicar os algoritmos de processamento de imagem
+    Imagem* result_mapeamento_linear = mapeamento_linear(img_jinx, hst);
+    Imagem* result_stretching = stretching(img_jinx, hst);
+    Imagem* result_equalizacao = equalizacao(img_jinx, hst);
+    Imagem* result_clipping = clipping(img_jinx, 200);
+
+    // Salvar as imagens processadas
+    save_img(result_mapeamento_linear, "Jinx_MapeamentoLinear.png");
+    save_img(result_stretching, "Jinx_Stretching.png");
+    save_img(result_equalizacao, "Jinx_Equalizacao.png");
+    save_img(result_clipping, "Jinx_Clipping.png");
+
+     result_mapeamento_linear = mapeamento_linear(img_jinx_lowc, hst);
+     result_stretching = stretching(img_jinx_lowc, hst);
+     result_equalizacao = equalizacao(img_jinx_lowc, hst);
+     result_clipping = clipping(img_jinx_lowc, 200);
+
+    // Salvar as imagens processadas
+    save_img(result_mapeamento_linear, "Jinx_MapeamentoLinearLOWC.png");
+    save_img(result_stretching, "Jinx_StretchingLOWC.png");
+    save_img(result_equalizacao, "Jinx_EqualizacaoLOWC.png");
+    save_img(result_clipping, "Jinx_ClippingLOWC.png");
+
+     result_mapeamento_linear = mapeamento_linear(img_jinx_lowv, hst);
+     result_stretching = stretching(img_jinx_lowv, hst);
+     result_equalizacao = equalizacao(img_jinx_lowv, hst);
+     result_clipping = clipping(img_jinx_lowv, 200);
+
+    // Salvar as imagens processadas
+    save_img(result_mapeamento_linear, "Jinx_MapeamentoLinearLOWV.png");
+    save_img(result_stretching, "Jinx_StretchingLOWV.png");
+    save_img(result_equalizacao, "Jinx_EqualizacaoLOWV.png");
+    save_img(result_clipping, "Jinx_ClippingLOWV.png");
+
+    
+
+    // Liberar memória
+    free_histogram(hst);
+    free_image(img_jinx);
+    free_image(mask);
+    free_image(result_mapeamento_linear);
+    free_image(result_stretching);
+    free_image(result_equalizacao);
+    free_image(result_clipping);
+
+    return 0;
     
 
 
